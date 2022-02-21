@@ -1,6 +1,3 @@
-from numpy import matrix
-
-
 def MatrixConstruct(points,M=2,lamb=1):
     matrices = {}
     matrices['b'] = []
