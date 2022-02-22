@@ -1,8 +1,9 @@
 from .CholeskyDecomposition import CholeskyDecomposition
 from .InputFileParser import InputFileParser
-from .MatrixConstruct import MatrixConstruct, MatrixMultiply
+from .MatrixConstruct import MatrixConstruct, MatrixMultiply, MatrixMultiScalar
 from .InverseCalculate import InverseCalculate
 from .rLSE import rLSE
+from .NewtonMethod import NewtonMethod
 
 __all__ = [
     'CholeskyDecomposition',
@@ -10,5 +11,7 @@ __all__ = [
     'MatrixConstruct',
     'InverseCalculate',
     'rLSE',
-    'MatrixMultiply'
+    'MatrixMultiply',
+    'MatrixMultiScalar',
+    'NewtonMethod'
 ]

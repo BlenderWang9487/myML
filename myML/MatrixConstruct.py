@@ -1,3 +1,6 @@
+from re import L
+
+
 def MatrixConstruct(points,M,lamb):
     matrices = {}
     matrices['b'] = []
@@ -6,8 +9,9 @@ def MatrixConstruct(points,M,lamb):
         matrices['b'].append([point[1]])
         matrices['A'].append([pow(point[0],(M-i-1)) for i in range(M)])
     matrices['AtA'] = MatrixMultiply(matrices['A'],matrices['A'],[True,False])
+    matrices['AtA_lambdaI'] = MatrixMultiply(matrices['A'],matrices['A'],[True,False])
     for i in range(M):
-        matrices['AtA'][i][i] += lamb
+        matrices['AtA_lambdaI'][i][i] += lamb
     return matrices
 
 def MatrixMultiply(m1,m2,mode=[False,False]): # mode False,False both matrices aren't transposes, True,False first matrix is transpose ...
@@ -22,3 +26,13 @@ def MatrixMultiply(m1,m2,mode=[False,False]): # mode False,False both matrices a
                 sum += (m1[r][k] if not mode[0] else m1[k][r]) * (m2[k][c] if not mode[1] else m2[c][k])
             result[r][c] = sum
     return result
+
+def MatrixMultiScalar(m,scalar):
+    R = len(m)
+    C = len(m[0])
+    result = [[0 for c in range(C)] for r in range(R)]
+    for r in range(R):
+        for c in range(C):
+            result[r][c] = m[r][c] * scalar
+    return result
+    

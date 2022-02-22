@@ -1,17 +1,17 @@
-def CholeskyDecomposition(matrices):
-    M = len(matrices['AtA'])
-    matrices['L'] = [[0 for i in range(M)] for j in range(M)]
+def CholeskyDecomposition(m):
+    M = len(m)
+    lower_triangle = [[0 for i in range(M)] for j in range(M)]
     for i in range(M):
         for j in range(i+1):
             if i == j:
-                matrices['L'][i][j] = pow(
-                    matrices['AtA'][i][j] -
-                    sum([matrices['L'][j][k] * matrices['L'][j][k] for k in range(j-1)]),
+                lower_triangle[i][j] = pow(
+                    m[i][j] -
+                    sum([lower_triangle[j][k] * lower_triangle[j][k] for k in range(j-1)]),
                     0.5
                 )
             else:
-                matrices['L'][i][j] = (
-                    matrices['AtA'][i][j] -
-                    sum([matrices['L'][j][k] * matrices['L'][i][k] for k in range(j-1)])
-                ) / matrices['L'][j][j]
-    return
+                lower_triangle[i][j] = (
+                    m[i][j] -
+                    sum([lower_triangle[j][k] * lower_triangle[i][k] for k in range(j-1)])
+                ) / lower_triangle[j][j]
+    return lower_triangle
