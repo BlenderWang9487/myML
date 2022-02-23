@@ -1,10 +1,10 @@
-from . import CholeskyDecomposition, MatrixConstruct, MatrixMultiply, InverseCalculate
+from myML.LUDecomposition import LUDecomposition
+from . import CholeskyDecomposition, MatrixConstruct, MatrixMultiply, InverseCalculate, MatrixPrint, LowerInverseCalculate
 def rLSE(input_data,M=2,lamb=1):
     matrices = MatrixConstruct(input_data,M,lamb)
-
-    lower_traingle = CholeskyDecomposition(matrices['AtA_lambdaI'])
-    inv_lower = InverseCalculate(lower_traingle)
-    inv_AtA_lambdaI = MatrixMultiply(inv_lower,inv_lower,[True,False])
+    
+    L,U = LUDecomposition(matrices['AtA_lambdaI'])
+    inv_AtA_lambdaI = InverseCalculate(L,U)
     inv_AtA_lambdaI_At = MatrixMultiply(inv_AtA_lambdaI,matrices['A'],[False,True])
     x = MatrixMultiply(inv_AtA_lambdaI_At,matrices['b'])
 

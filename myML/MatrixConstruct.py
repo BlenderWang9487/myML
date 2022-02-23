@@ -1,6 +1,3 @@
-from re import L
-
-
 def MatrixConstruct(points,M,lamb):
     matrices = {}
     matrices['b'] = []
@@ -35,4 +32,15 @@ def MatrixMultiScalar(m,scalar):
         for c in range(C):
             result[r][c] = m[r][c] * scalar
     return result
+
+def MatrixPrint(m):
+    text = "["
+    for r in m:
+        text += "[\t"
+        for c in r:
+            text += str(c) + "\t"
+        text += " ]\n"
+    text += "]"
+    print(text)
+    return
     

@@ -18,11 +18,14 @@ if __name__ == "__main__":
     for i in range(M-1):
         text += str(x_rLSE[i][0]) + "*X^" + str(M-i-1) + " "
         if i != M-1 and x_rLSE[i+1][0] >= 0:
-                text += "+ "
+            text += "+ "
     text += str(x_rLSE[-1][0])
     print(text,"\nTotal Err is: ",err,"\n")
 
+    # initial_x = [[3.023],[4.906],[-0.231]]
     x_Newton, err2 = NewtonMethod(input_data,M)
+    """for i in range(2):
+        x_Newton, err2 = NewtonMethod(input_data,M,x_Newton)"""
     print("Newton==> f(x) is:")
     text = ""
     for i in range(M-1):
