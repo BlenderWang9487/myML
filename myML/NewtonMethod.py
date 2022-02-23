@@ -1,9 +1,11 @@
 from . import MatrixConstruct,CholeskyDecomposition,InverseCalculate,MatrixMultiply,MatrixMultiScalar
 
-def NewtonMethod(input_data,M=2):
+def NewtonMethod(input_data,M=2,x=[]):
     m = MatrixConstruct(input_data,M,0)
     
-    x = [[0] for i in range(M)]
+    if len(x) == 0:
+        x = [[0] for i in range(M)]
+    
     _2AtA = MatrixMultiScalar(m['AtA'],2)
     lower_triangle = CholeskyDecomposition(_2AtA)
     inv_lower = InverseCalculate(lower_triangle)
